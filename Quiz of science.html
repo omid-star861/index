@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quize of Scinence</title>
+  <style>
+    body {
+      font-family: Mj_parand, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #FFF4FD;
+    }
+	  h7{
+      font-family: Mj_parand, sans-serif;
+      text-align: center;
+      padding: 20px;
+	  }
+	  h13{
+      font-family: Thols, sans-serif;
+      text-align: center;
+      padding: 2px;
+	  }
+	  h10{
+		  font-family: Mj_parand, sans-serif;
+      text-align: center;
+      padding: 1px;
+	  }
+    h1 {
+		font-family: Tahoma, sans-serif;
+      color: #333;
+    }
+    .quiz-container {
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #FFEEB5;
+      width: 60%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+	  h9{
+		  font-family: Tahoma, sans-serif;
+	  }
+	      h8 {
+      color: #333;
+    }
+    .quiz-container {
+      margin: 5px auto;
+      padding: 5px;
+      background-color: #FFEEB5;
+      width: 60%;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+	  	      h7 {
+      color: #333;
+    }
+    .quiz-container {
+      margin: 2px auto;
+      padding: 2px;
+      background-color: #FFDAFB;
+      width: 60%;
+      border-radius: 2px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .question {
+	  font-family: homa, sans-serif;
+      font-size: 25px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .answers {
+      list-style-type: none;
+      padding: 0;
+    }
+    .answer {
+      background-color: #FFCFF9;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .answer:hover {
+      background-color: #FFBFF5;
+    }
+    .button {
+	  font-family: Mj_parand, sans-serif;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+	
+  <h1>👑Quiz of Science👑</h1>
+	<h7>😉اینجا جای توئه دانشمند</h7><h8>🤓اینجا هر روز زوج کوییز داریم با جایزه</h8>
+	  <h1>فصل دوم</h1><h10>کوییز اول</h10>
+
+  <div class="quiz-container">
+	  	<h13>📗نسخه رایگان📘</h13>
+    <div id="quiz">
+      <div class="question" id="question-text">سوختن چیست؟</div>
+
+      <ul class="answers">
+        <li class="answer" onclick="checkAnswer('a')">تغییری که با گاز های سمی همراه است</li>
+        <li class="answer" onclick="checkAnswer('b')">تغییری فیزیکی</li>
+        <li class="answer" onclick="checkAnswer('c')">تغییری شیمیایی</li>
+        <li class="answer" onclick="checkAnswer('d')">همه موارد</li>
+      </ul>
+    </div>
+
+    <button class="button" onclick="nextQuestion()">سوال بعدی</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+
+    let currentQuestion = 0;
+    let score = 
+
+parseInt(localStorage.getItem('score')) || 0; // بارگذاری امتیاز از localStorage
+	  
+    const questions = [
+      {
+        question: "گاز کربن مونوکسید چیست؟",
+        correctAnswer: "c",
+        answers: {
+          a: "گازی که بوی سیب دارد",
+          b: "گازی کشنده که رنگ آن سبز است",
+          c: "گازی که به قاتل خاموش معروف است",
+          d: "همه موارد"
+        }
+      },
+      {
+        question: "مثلث آتش چه بخش هایی دارد؟",
+        correctAnswer: "d",
+        answers: {
+          a: "گرما،نور،اکسیژن",
+          b: "گرما،اکسیژن،گاز کربن‌دی‌اکسید",
+          c: "گرما،آتش،ماده سوختنی",
+          d: "گرما،اکسیژن،ماده سوختنی"
+        }
+      },
+      {
+
+        question: "شمع چیست؟",
+        correctAnswer: "a",
+        answers: {
+          a: "نوعی هیدروکربن",
+          b: "پارافین جامد",
+          c: "نوعی لیپید(چربی)",
+          d: "گزینه 1 و 3"
+        }
+      },
+      {
+        question: "با سوختن چه کاری می توان انجام داد؟",
+        correctAnswer: "c",
+        answers: {
+          a: "از بین بردن حشرات موذی",
+          b: "گرم کردن اطراف",
+          c: "آزاد کردن انرژی مواد",
+          d: "همه موارد"
+        }
+      },
+      {
+        question: "ماده حاصل از جوش شیرین و اسید های قرص‌جوشان چیست؟",
+
+        correctAnswer: "b",
+        answers: {
+          a: "سولفات",
+          b: "نمک",
+          c: "گاز متان",
+          d: "ید"
+        }
+      }
+    ];
+
+    // بررسی پاسخ
+    function checkAnswer(answer) {
+      const currentQ = questions[currentQuestion];
+      if (answer === currentQ.correctAnswer) {
+        score++;
+      }
+		
+      localStorage.setItem('score', score); // ذخیره امتیاز در localStorage
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = `گزینه انتخاب شد`;
+    }
+
+    // پیشروی به سوال بعدی	  
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        const question = questions[currentQuestion];
+        document.getElementById('question-text').textContent = question.question;
+        const answerElements = document.querySelectorAll('.answer');
+        const answers = question.answers;
+        answerElements[0].textContent = answers.a;
+        answerElements[1].textContent = answers.b;
+        answerElements[2].textContent = answers.c;
+        answerElements[3].textContent = answers.d;
+        document.getElementById('result').textContent = '';
+      } else {
+		document.getElementById('result').textContent = `.تا کوییز بعدی خودت رو خوب آماده کن و امتیاز بیشتری بگیر،امتیاز نهایی شما: ${score}`;
+		  if (score >= 100) {
+			 alert (".مجوز ورود به فصل بعد رو گرفتی.برای دریافت پکیج فصل بعد،شماره فصل بعدی که میخوای رو به این آیدی توی ایتا بفرست:@ArtAnimate")
+		  } else {
+			  alert ("بازم تلاش کن تا جایزه رو ببری😉")
+		  } 
+        document.querySelector('button').disabled = true;
+      }
+    }
+	  
+    // در ابتدا امتیاز را نمایش می‌دهیم
+    document.getElementById('result').textContent = `امتیاز فعلی: ${score}`;
+  </script>
+<h9>
+			<button class="button" onclick="location.reload()">شروع مجدد</button>
+	
+		<button class="button" onclick="cantact()">ارتباط با ما</button>
+	<script>
+	function cantact() {
+		alert("برای ارتباط با ما به آیدی زیر در ایتا پیام دهید\n@ArtAnimate");
+	}
+	</script>
+	
+	<button class="button" onclick="resetGame()">خروج</button>
+	</h9>
+	<script>
+		function resetGame() {
+			localStorage.clear();
+			alert("از حسابتان خارج شدید");
+			location.reload();
+
+		}
+	</script>
+		    <button class="button" onclick="about()">درباره ما</button>
+	<script>
+	function about() {
+		alert("این سایت به طراحی امیرعلی کرمی ساخته شده است.این سایت به طور رسمی در 30 دی‌ماه 1403 آغاز به کار کرد.این سایت در دو حالت پریمیوم و عادی طراحی شده که نسخه پریمیوم تا ماه های آتی در دسترس عموم خواهد بود.");
+	}
+	</script>
+	</h7>
+
+</body>
+</html>
